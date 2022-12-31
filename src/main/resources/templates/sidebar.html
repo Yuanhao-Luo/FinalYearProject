@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="sidebar">
+    <div class="sidebar-header"></div>
+
+    <div class="ui massive list">
+        <div class="item">
+            <a href="/" class="sidebar-section">
+                <div class="sidebar-icon">
+                    <i class="home icon"></i>
+                </div>
+                <span class="sidebar-word">
+                        Home
+                </span>
+            </a>
+        </div>
+
+        <div class="item">
+            <a class="sidebar-section">
+                <div class="sidebar-icon">
+                    <i class="video icon"></i>
+                </div>
+                <span class="sidebar-word">
+                        Video
+                </span>
+            </a>
+        </div>
+
+        <div class="item">
+            <a class="sidebar-section">
+                <div class="sidebar-icon">
+                    <i class="music icon"></i>
+                </div>
+                <span class="sidebar-word">
+                        Music
+                </span>
+            </a>
+        </div>
+
+        <div class="item">
+            <a class="sidebar-section">
+                <div class="sidebar-icon">
+                    <i class="upload icon"></i>
+                </div>
+                <span class="sidebar-word">
+                        Upload
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div id="login_button" class="login-button">
+        <span>
+            Log in
+        </span>
+    </div>
+
+    <div id="account_info">
+        <span id="account_username"></span>
+        <div id="logout_button">
+            <i class="ui circular logout icon"></i>
+        </div>
+    </div>
+
+    <div class="ui tiny modal">
+        <div class="modal-content">
+            <div class="login-titles ui top attached tabular menu">
+                <a class="item active" data-tab="first">
+                <span class="login-title">
+                    Log in
+                </span>
+                </a>
+                <a class="item" data-tab="second">
+                <span class="login-title">
+                    Register
+                </span>
+                </a>
+            </div>
+            <div class="ui bottom attached tab segment active" data-tab="first">
+                <form th:action="@{login}" method="post" th:object="${user}">
+                    <div class="login-form">
+                        <div class="login-username ui labeled input">
+                            <div class="login-label ui label">
+                                Username
+                            </div>
+                            <input type="text" id="login_username" th:field="*{username}">
+                        </div>
+
+                        <div class="login-password ui labeled input">
+                            <div class="login-label ui label">
+                                Password
+                            </div>
+                            <input type="password" id="login_password" th:field="*{password}">
+                        </div>
+
+                        <div class="login-submit">
+                            <button class="ui green button" type="submit">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="ui bottom attached tab segment" data-tab="second">
+                <form th:action="@{register}" method="post" th:object="${user}">
+                    <div class="login-form">
+                        <div class="login-username ui labeled input">
+                            <div class="login-label ui label">
+                                Username
+                            </div>
+                            <input type="text" id="register_username" th:field="*{username}">
+                        </div>
+
+                        <div class="login-password ui labeled input">
+                            <div class="login-label ui label">
+                                Password
+                            </div>
+                            <input type="password" id="register_password" th:field="*{password}">
+                        </div>
+
+                        <div class="login-email ui labeled input">
+                            <div class="login-label ui label">
+                                E-mail
+                            </div>
+                            <input type="email" id="register_email" th:field="*{email}">
+                        </div>
+
+
+                        <div class="login-submit">
+                            <button class="ui green button" type="submit">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

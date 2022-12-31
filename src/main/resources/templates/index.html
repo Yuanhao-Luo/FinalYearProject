@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="semantic.min.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <script src="semantic.min.js"></script>
+</head>
+<body>
+<div class="page-header">
+    <h1>A Website</h1>
+</div>
+
+<div class="sidebar_" th:include="sidebar :: sidebar"></div>
+
+<div class="body">
+    <div id="body_container" class="video-list-container">
+        <a class="video-container" th:each="video: ${session.videoList}" th:href="@{'/watch?video=' + ${video.id}}">
+            <div class="video-cover"></div>
+            <div class="video-title" th:text="${video.title}">Lycoris Recoil [01]</div>
+        </a>
+    </div>
+</div>
+
+
+<script>
+
+    // document.getElementById("LoginButton").addEventListener("click", () => {
+    //     // let visible = document.getElementById("LoginDialogue").style.display == "none";
+    //     // document.getElementById("LoginDialogue").style.display = visible ? "block" : "none"
+    //     window.location.ref = "/login";
+    // })
+    // document.getElementById("RegisterButton").addEventListener("click", () => {
+    //     window.location.href = "/register";
+    // })
+    // document.getElementById("LogoutButton").addEventListener("click", () => {
+    //     window.location.href = "/logout";
+    // })
+
+    // $('.visible.example .ui.sidebar')
+    //     .sidebar({
+    //         context: '.visible.example .bottom.segment'
+    //     })
+    //     .sidebar('hide')
+    // ;
+
+</script>
+<script src="general_after.js"></script>
+</body>
+</html>
