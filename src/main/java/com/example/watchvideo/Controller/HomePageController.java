@@ -220,6 +220,7 @@ public class HomePageController {
                 if (userModel.getPassword().equals(password)){
                     userModel.setEmail(email);
                     userR.save(userModel);
+                    storeUserCookie(userModel, response);
                 }else{
                     return "Wrong password";
                 }

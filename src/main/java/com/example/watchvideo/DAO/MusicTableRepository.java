@@ -22,7 +22,7 @@ public interface MusicTableRepository extends JpaRepository<MusicTable, Integer>
 //            where upper(m.title) like upper(concat('%', ?1, '%')) or upper(vocals.name) like upper(concat('%', ?2, '%'))""")
 //    List<MusicTable> search(String title, String name);
 
-    @Query("select m from MusicTable m left join m.vocals vocals " +
+    @Query("select distinct m from MusicTable m left join m.vocals vocals " +
             "where upper(m.title) like upper(concat('%', ?1, '%')) or upper(vocals.name) like upper(concat('%', ?2, '%'))")
     List<MusicTable> search(String title, String name);
 }

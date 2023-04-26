@@ -66,7 +66,7 @@ function logout(){
         type: "GET",
         url: "/logout",
         success: function (data) {
-            jumpto_home();
+            // jumpto_home();
             update_userinfo();
         }
     })
@@ -78,7 +78,7 @@ function change_musicList(musicList) {
     pageList = [];
     for (let i = 0; i < musicList.length; i++) {
         const music = musicList[i];
-        const music_item = $(`<div class="music-item">
+        const music_item = $(`<div v="${music.id}" class="music-item">
                     <div class="music-number">
                         ${i + 1}
                     </div>
@@ -246,7 +246,7 @@ function showMusiclist_addButton(add_button) {
                         url: "/add_musiclist",
                         data: {
                             musiclist_id: result[i].id,
-                            music_id: currentMusic.id
+                            music_id: add_button.parent().parent().attr("v")
                         },
                         dataType: "json",
                         success: function (result) {

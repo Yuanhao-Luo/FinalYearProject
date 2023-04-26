@@ -82,8 +82,8 @@
                     <span th:text="${session.series}"></span>
                 </div>
                 <div class="ui segments">
-                    <div th:each="ep: ${session.episodes}" th:onclick="'jump_episode(' + ${ep.id} + ')'" class="ui segment">
-                        <span th:text="${ep.title}"></span>
+                    <div th:each="ep: ${session.episodes}" th:href="@{'/watch?video=' + ${ep.id}}" class="ui segment">
+                        <a th:href="@{'/watch?video=' + ${ep.id}}" th:text="${ep.title}"></a>
                     </div>
                 </div>
             </div>
