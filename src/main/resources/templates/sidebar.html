@@ -21,7 +21,7 @@
         </div>
 
         <div class="item">
-            <a class="sidebar-section">
+            <a href="/video" class="sidebar-section">
                 <div class="sidebar-icon">
                     <i class="video icon"></i>
                 </div>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="item">
-            <a class="sidebar-section">
+            <a href="/music" class="sidebar-section">
                 <div class="sidebar-icon">
                     <i class="music icon"></i>
                 </div>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="item">
-            <a class="sidebar-section">
+            <a href="/upload" class="sidebar-section">
                 <div class="sidebar-icon">
                     <i class="upload icon"></i>
                 </div>
@@ -90,14 +90,18 @@
                             <div class="login-label ui label">
                                 Username
                             </div>
-                            <input type="text" id="login_username" th:field="*{username}">
+                            <input type="text" id="login_username" th:field="*{username}" th:value="${user.username}">
                         </div>
 
                         <div class="login-password ui labeled input">
                             <div class="login-label ui label">
                                 Password
                             </div>
-                            <input type="password" id="login_password" th:field="*{password}">
+                            <input type="password" id="login_password" th:field="*{password}" th:value="${user.password}">
+                        </div>
+
+                        <div id="login_error" class="login-error">
+                            <span class="ui pointing red basic label"></span>
                         </div>
 
                         <div class="login-submit">
@@ -114,21 +118,25 @@
                             <div class="login-label ui label">
                                 Username
                             </div>
-                            <input type="text" id="register_username" th:field="*{username}">
+                            <input type="text" id="register_username" th:field="*{username}" th:text="${username}">
                         </div>
 
                         <div class="login-password ui labeled input">
                             <div class="login-label ui label">
                                 Password
                             </div>
-                            <input type="password" id="register_password" th:field="*{password}">
+                            <input type="password" id="register_password" th:field="*{password}" th:text="${password}">
                         </div>
 
                         <div class="login-email ui labeled input">
                             <div class="login-label ui label">
                                 E-mail
                             </div>
-                            <input type="email" id="register_email" th:field="*{email}">
+                            <input type="email" id="register_email" th:field="*{email}" th:text="${email}">
+                        </div>
+
+                        <div id="register_error" class="login-error">
+                            <span class="ui pointing red basic label"></span>
                         </div>
 
 

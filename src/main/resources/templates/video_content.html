@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div id="video_container" class="video-list-container">
+    <div id="search_bar_container">
+        <div class="ui icon input">
+            <input id="search_input" type="text" placeholder="Search..." onkeydown="search_video(event)">
+            <i class="search icon"></i>
+        </div>
+    </div>
+
+    <div id="video_video_list" class="video-list">
+
+    </div>
+</div>
+<script>
+    function search_video(event){
+        console.log("search video")
+        if (event.keyCode == 13){
+            console.log("click enter")
+            $.ajax({
+                method: "get",
+                url:"/search_video",
+                data: {
+                    content: $("#search_input").val()
+                },
+                dataType:"json",
+                success:function (result) {
+                    console.log("search success")
+                    console.log("search result ", result)
+                    chanage_videos(result)
+                }
+            })
+        }
+    }
+
+    function chanage_videos(videoList){
+        $("#video_video_list").empty();
+        for (let i = 0; i < videoList.length; i++) {
+            $("#video_video_list").append('<div class="ui card" >\n' +
+                '        <a class="image" href="/watch?video=' + videoList[i].id + '">\n' +
+                '          <img src="/image/' + videoList[i].image + '">\n' +
+                '        </a>\n' +
+                '        <div class="content">\n' +
+                '          <a class="header" href="/watch?video=' + videoList[i].id + '">' + videoList[i].title + '</a>\n' +
+                '        </div>\n' +
+                '      </div>')
+        }
+    }
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "/video/latest",
+            type: "GET",
+            success: function (data) {
+                console.log(data);
+                $("#video_video_list").empty();
+                for (var i = 0; i < data.length; i++) {
+                    var video = data[i];
+                    var videoCard = '<div class="ui card">' +
+                        '<a class="image" href="/watch?video=' + video.id + '">' +
+                        '<img src="/image/' + video.image + '">' +
+                        '</a>' +
+                        '<div class="content">' +
+                        '<a class="header" href="/watch?video=' + video.id + '">' + video.title + '</a>' +
+                        '</div>' +
+                        '</div>';
+                    $("#video_video_list").append(videoCard);
+                }
+            }
+        });
+
+    });
+
+</script>
+</body>
+</html>

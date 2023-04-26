@@ -4,18 +4,64 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="general.css">
-    <link rel="stylesheet" href="semantic.min.css">
+    <link rel="stylesheet" href="semantic/semantic.min.css">
     <script src="jquery-3.6.3.min.js"></script>
-    <script src="semantic.min.js"></script>
+    <script src="semantic/semantic.min.js"></script>
 </head>
 <body>
-<header class="page-header">
-    <h1>A Website</h1>
-</header>
+<div id="header_container">
+    <div id="navigate_container">
+        <a href="/" id="navigate_home" class="navigate-button">
+            <div class="navigate-icon">
+                <i class="home icon"></i>
+            </div>
+            <span class="navigate-word">
+                        Home
+                </span>
+        </a>
+        <div id="navigate_video" class="navigate-button">
+            <div class="navigate-icon">
+                <i class="video icon"></i>
+            </div>
+            <span class="navigate-word">
+                        Video
+                </span>
+        </div>
+        <div id="navigate_music" class="navigate-button">
+            <div class="navigate-icon">
+                <i class="music icon"></i>
+            </div>
+            <span class="navigate-word">
+                        Music
+                </span>
+        </div>
+        <div id="navigate_upload" class="navigate-button">
+            <div class="navigate-icon">
+                <i class="upload icon"></i>
+            </div>
+            <span class="navigate-word">
+                        Upload
+                </span>
+        </div>
+    </div>
 
-<div class="sidebar_" th:include="sidebar :: sidebar"></div>
+    <div id="header_account">
+        <div id="login_button" class="login-button">
+        <span>
+            Log in
+        </span>
+        </div>
 
-<div class="body">
+        <div id="account_info">
+            <span id="account_username"></span>
+            <div id="logout_button">
+                <i class="ui circular logout icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div></div>
+<div id="main_content">
     <div class="watch-container">
         <div>
             <div class="watch-title">
@@ -44,14 +90,34 @@
         </div>
     </div>
 </div>
+<div id="music_player"></div>
+<script>
+    $(document).ready(function () {
+        // $("#header_container").load("/component/header");
+        $("#navigate_video").click(function () {
+            jumpto_video();
+        });
+
+        $("#navigate_music").click(function () {
+            jumpto_music();
+        });
+
+        $("#navigate_upload").click(function () {
+            jumpto_upload();
+        });
+
+        $("#login_button").click(function () {
+            jumpto_login();
+        });
+
+        $("#logout_button").click(function () {
+            logout();
+        })
 
 
-<!--<div style="position: fixed; top:10%; right: 20%; height: 100px">-->
-<!--    <div th:each="ep: ${session.episodes}">-->
-<!--        <a th:href="@{'/watch?video=' + ${ep.id}}" th:text="${ep.title}"></a>-->
-<!--    </div>-->
-<!--</div>-->
-
-<script src="general_after.js"></script>
+        update_userinfo();
+    });
+</script>
+<script src="mainpage_after.js"></script>
 </body>
 </html>

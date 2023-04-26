@@ -1,5 +1,7 @@
 package com.example.watchvideo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -25,7 +27,21 @@ public class VideoTable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "series_id")
+    @JsonIgnore
     private com.example.watchvideo.Model.SeriesTable series;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id")
+    @JsonIgnore
+    private com.example.watchvideo.Model.ImageTable image;
+
+    public ImageTable getImage() {
+        return image;
+    }
+
+    public void setImage(ImageTable image) {
+        this.image = image;
+    }
 
     public Integer getId() {
         return id;

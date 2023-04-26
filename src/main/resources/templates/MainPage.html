@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <link rel="stylesheet" href="general.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <script src="semantic/semantic.min.js"></script>
+</head>
+<body>
+<div id="header_container">
+
+</div>
+<div id="main_content">
+</div>
+<div id="music_player_content"></div>
+<script>
+    $(document).ready(function () {
+        $("#main_content").load("/home_content");
+        $("#header_container").load("/component/header");
+        $("#music_player_content").load("/component/musicplayer");
+    });
+</script>
+<script src="mainpage_after.js"></script>
+</body>
+</html>

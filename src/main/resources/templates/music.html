@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <link rel="stylesheet" href="jquery-ui-1.13.2.custom/jquery-ui.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <script src="semantic/semantic.min.js"></script>
+    <script src="jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../static/general.css">
+</head>
+<body>
+<div class="page-header">
+    <h1>A Website</h1>
+</div>
+
+<div class="sidebar_" th:include="sidebar :: sidebar"></div>
+
+<div class="body">
+    <div id="body_container" class="music-list-container">
+            <h1 class="">My Music List</h1>
+
+            <div id="music_list" class="">
+                <div class="music-item">
+                    <div class="music-number">
+                        1
+                    </div>
+                    <div class="music-title">
+                        <a href="#">Song 1</a>
+                    </div>
+                    <div class="music-vocal">
+                        Artist 1
+                    </div>
+                    <div class="music-buttons">
+                        <button class="ui circular icon button">
+                            <i class="heart icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div id="music_player_container" class="music-player-container">
+        <div class="ui small top attached progress" id="music_progress">
+            <div class="bar"></div>
+        </div>
+        <div class="music-player-controlbox">
+            <div class="music-player-info">
+                <div class="music-player-image">
+                    <img src="/image/0">
+                </div>
+                <div class="music-player-infotext">
+                    <div id="music_player_title" class="music-player-title">
+                        Song 1
+                    </div>
+                    <div id="music_player_vocal" class="music-player-vocal">
+                        Artist 1
+                    </div>
+                </div>
+
+            </div>
+            <div class="music-player-control">
+                <div class="music-player-previous">
+                    <button id="music_player-previous" class="ui circular icon button">
+                        <i class="backward icon"></i>
+                    </button>
+                </div>
+                <div id="music_player_play" class="music-player-play">
+                    <button class="ui circular big icon button">
+                        <i class="play icon"></i>
+                    </button>
+                </div>
+                <div id="music_player_pause" class="music-player-play">
+                    <button class="ui circular big icon button">
+                        <i class="pause icon"></i>
+                    </button>
+                </div>
+                <div class="music-player-next">
+                    <button id="music_player_next" class="ui circular icon button">
+                        <i class="forward icon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="music-player-button">
+                <div class="music-player-time">
+                    <div id="music_player_current" class="music-player-currenttime">
+                        0:00
+                    </div>
+                    <div class="music-player-split">
+                        &nbsp;/&nbsp;
+                    </div>
+                    <div id="music_player_duration" class="music-player-duration">
+                        0:00
+                    </div>
+                </div>
+                <div class="music-player-volume">
+                    <div id="music_player_volume" class="ui small progress">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="music-player-random">
+                    <button id="music_player_random" class="ui circular icon button">
+                        <i class="random icon"></i>
+                    </button>
+                </div>
+                <div class="music-player-single">
+                    <button id="music_player_single" class="ui circular icon button">
+                        <i class="repeat icon"></i>
+                    </button>
+                </div>
+                <div class="music-player-loop">
+                    <button id="music_player_loop" class="ui disabled circular icon button">
+                        <i class="retweet icon"></i>
+                    </button>
+                </div>
+                <div class="music-player-add">
+                    <button id="music_player_add" class="ui floating dropdown circular icon button">
+                        <i class="plus icon"></i>
+                        <div id="music_player_musiclists" class="menu">
+                            <div class="item">
+                                Musiclist 1
+                            </div>
+                            <div class="item">
+                                Musiclist 2
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <audio id="music_player" controls>
+            <source src="/music_player/3" type="audio/aac">
+        </audio>
+    </div>
+
+</div>
+
+
+<script src="general_after.js"></script>
+<script src="music_after.js"></script>
+</body>
+</html>

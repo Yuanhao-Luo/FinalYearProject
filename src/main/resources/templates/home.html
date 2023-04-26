@@ -1,10 +1,176 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
-<h1 th:text="迎您来到Thymeleaf">欢迎您访问静态页面 HTML</h1>
+<div id="home_container">
+    <div id="carousel_list_container">
+        <div class="carousel_container">
+            <div class="carousel_slides">
+                <a href="/watch?video=1" class="carousel_slide"><img src="/image/0"></a>
+                <a href="/watch?video=1" class="carousel_slide"><img src="/image/1"></a>
+                <a href="/watch?video=1" class="carousel_slide"><img src="/image/2"></a>
+            </div>
+            <button class="carousel_prev"><i class="chevron circle left icon"></i></button>
+            <button class="carousel_next"><i class="chevron circle right icon"></i></button>
+            <div id="carousel_gradient">
+
+            </div>
+            <div id="carousel_information">
+                <div id="carousel_information_word">
+                    Uma Musume S2 [01]
+                </div>
+            </div>
+        </div>
+        <div id="homelist_container">
+            <div id="homelist_title">
+                Music List
+            </div>
+            <div class="ui divider"></div>
+            <div id="homelist_list">
+                <div class="homelist-item">
+                    <div class="homelist-item-title">Favourite</div>
+                </div>
+                <div class="homelist-item">
+                    <div class="homelist-item-title">Favourite</div>
+                </div>
+                <div class="homelist-item">
+                    <div class="homelist-item-title">Favourite</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div id="latest_video_container">
+<!--        <div id="latest_video_title">-->
+<!--            Latest Video-->
+<!--        </div>-->
+
+        <div id="latest_video_list" class="video-list">
+
+        </div>
+    </div>
+</div>
+<script>
+    function moveSlides() {
+        slideWidth = $('.carousel_slide').width();
+        slideMargin = parseInt($('.carousel_slide').css('margin-right'));
+        var slidePosition = currentIndex * -(slideWidth + slideMargin);
+        $('.carousel_slides').css('transform', 'translateX(' + slidePosition + 'px)');
+
+        //update carousel information
+        var video = sliderVideo[currentIndex];
+        $("#carousel_information_word").html(video.title);
+    }
+
+
+
+    var slideCount = $('.carousel_slide').length;
+    var slideWidth = $('.carousel_slide').width();
+    var slideMargin = parseInt($('.carousel_slide').css('margin-right'));
+    var sliderWidth = slideCount * (slideWidth + slideMargin);
+    var currentIndex = 0;
+    var sliderVideo = []
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "/video/latest",
+            type: "GET",
+            success: function (data) {
+                console.log(data);
+                $("#latest_video_list").empty();
+                for (var i = 0; i < data.length; i++) {
+                    var video = data[i];
+                    var videoCard = $('<div class="ui card">' +
+                        '<a href="/watch?video='+ video.id +'" class="image">' +
+                        '<img src="/image/' + video.image + '">' +
+                        '</a>' +
+                        '<div class="content">' +
+                        '<a href="/watch?video='+ video.id +'" class="header">' + video.title + '</a>' +
+                        '</div>' +
+                        '</div>');
+                    // videoCard.click(function () {
+                    //     jumpto_watch(video.id)
+                    // });
+                    $("#latest_video_list").append(videoCard);
+                }
+
+                //randomly select 3 videos to display on carousel
+                var randomIndex;
+                var randomVideo;
+                for (let i = 0; i < 3; i++) {
+                    randomIndex = Math.floor(Math.random() * data.length);
+                    randomVideo = data[randomIndex];
+                    sliderVideo.push(randomVideo);
+                    data.splice(randomIndex, 1);
+                }
+
+                //clear carousel
+                $(".carousel_slides").empty();
+
+                //display these videos on carousel
+                for (let i = 0; i < sliderVideo.length; i++) {
+                    var video = sliderVideo[i];
+                    var videoCard = '<a href="/watch?video=' + video.id + '" class="carousel_slide"><img src="/image/' + video.image + '"></a>';
+                    $(".carousel_slides").append(videoCard);
+                }
+
+                //update carousel information
+                var video = sliderVideo[0];
+                $("#carousel_information_word").html(video.title);
+
+            }
+        });
+
+        $.ajax({
+            method: "get",
+            url:"/user_musiclists",
+            success:function (result) {
+                //clear the list
+                $("#homelist_list").empty()
+                //add all items in result to #music_player_musiclists
+                for (let i = 0; i < result.length; i++) {
+                    const musiclisthtml = $(`
+                            <div class="homelist-item">
+                                <div class="homelist-item-title">${result[i].title}</div>
+                            </div>`)
+                    musiclisthtml.click((event) => {
+                        jumpto_musiclist(result[i].id)
+                    })
+
+
+
+                    console.log("musiclisthtml: " + musiclisthtml)
+                    $("#homelist_list").append(musiclisthtml)
+                }
+            }
+        })
+
+
+        slideCount = $('.carousel_slide').length;
+        slideWidth = $('.carousel_slide').width();
+        slideMargin = parseInt($('.carousel_slide').css('margin-right'));
+        sliderWidth = slideCount * (slideWidth + slideMargin);
+
+        $('.carousel_prev').click(function() {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = slideCount - 1;
+            }
+            moveSlides();
+        });
+
+        $('.carousel_next').click(function() {
+            currentIndex++;
+            if (currentIndex >= slideCount) {
+                currentIndex = 0;
+            }
+            moveSlides();
+        });
+
+    });
+</script>
 </body>
 </html>

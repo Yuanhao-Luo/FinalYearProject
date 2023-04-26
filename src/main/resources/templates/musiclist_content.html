@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div id="body_container" class="music-list-container">
+    <h1 id="musiclist_title">My Music List</h1>
+
+    <div id="music_list" class="">
+        <div class="music-item">
+            <div class="music-number">
+                1
+            </div>
+            <div class="music-title">
+                <a href="#">Song 1</a>
+            </div>
+            <div class="music-vocal">
+                Artist 1
+            </div>
+            <div class="music-buttons">
+                <button class="ui circular icon button">
+                    <i class="heart icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $.ajax({
+        method: "get",
+        url:"/musiclist/user_list/" + musiclist_id,
+        data: {},
+        dataType:"json",
+        success:function (result) {
+            console.log(result)
+            change_musicList(result)
+        }
+    })
+
+    $.ajax({
+        method: "get",
+        url:"/musiclist/info/" + musiclist_id,
+        data: {},
+        dataType:"json",
+        success:function (result) {
+            $("#musiclist_title").html(result.title)
+        }
+    });
+</script>
+</body>
+</html>

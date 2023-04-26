@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div class="watch-container">
+    <div>
+        <div class="watch-title">
+            <span th:text="${session.title}">Title</span>
+        </div>
+
+        <div class="watch-video-container">
+            <video width="100%" height="100%" controls preload="auto">
+                <source th:src="${session.player}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+
+    <div class="episodes-container" th:unless="${session.series == null}">
+        <div class="ui segments">
+            <div id="series_title" class="ui segment">
+                <span th:text="${session.series}"></span>
+            </div>
+            <div class="ui segments">
+                <div th:each="ep: ${session.episodes}" th:onclick="'jump_episode(' + ${ep.id} + ')'" class="ui segment">
+                    <span th:text="${ep.title}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

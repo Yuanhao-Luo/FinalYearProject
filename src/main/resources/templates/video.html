@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="semantic/semantic.min.css">
+    <script src="jquery-3.6.3.min.js"></script>
+    <script src="semantic/semantic.min.js"></script>
+</head>
+<body>
+<div class="page-header">
+    <h1>A Website</h1>
+</div>
+
+<div class="sidebar_" th:include="sidebar :: sidebar"></div>
+
+<div class="body">
+    <div id="body_container" class="video-list-container">
+        <div id="search_bar_container">
+            <div class="ui icon input">
+                <input id="search_input" type="text" placeholder="Search..." onkeydown="search_video(event)">
+                <i class="search icon"></i>
+            </div>
+        </div>
+
+        <div id="video_list" class="video-list">
+            <div class="ui card" th:each="video: ${session.videoList}" th:href="@{'/watch?video=' + ${video.id}}">
+                <a class="image" th:href="@{'/watch?video=' + ${video.id}}">
+                    <img th:src="@{'/image/' + ${video.image}}">
+                </a>
+                <div class="content">
+                    <a class="header" th:href="@{'/watch?video=' + ${video.id}}" th:text="${video.title}">Video Title</a>
+                    <!--                    <div class="meta">-->
+                    <!--                        <span class="date">Uploaded 3 days ago</span>-->
+                    <!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="general_after.js"></script>
+<script src="video_after.js"></script>
+<div th:if="${error_id != null}">
+    <script>
+        console.log("login error")
+
+        var err_id = [[${error_id}]]
+
+        console.log("err_id  " + err_id.toString())
+
+        switch (err_id){
+            case 0: wrong_loginfo();break;
+            case 1: account_exist();break;
+            case 2: invalid_password();break;
+            case 3: invalid_email();break;
+            case 4: wrong_password_emailAuth();break;
+            case 5: need_login();break;
+        }
+
+
+    </script>
+</div>
+
+
+</body>
+</html>

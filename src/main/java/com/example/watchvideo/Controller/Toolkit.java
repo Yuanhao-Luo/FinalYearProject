@@ -1,5 +1,7 @@
 package com.example.watchvideo.Controller;
 
+import org.springframework.ui.Model;
+
 public class Toolkit {
     static String HttpTranslate(String s){
         String res = "";
@@ -86,5 +88,15 @@ public class Toolkit {
 //        }
 
         return res;
+    }
+
+    public static void errorMsg(int error_id, Model model){
+//        cleanErr(session);
+//
+//        session.setAttribute(errorName[error_id], true);
+//        session.setAttribute(errorMsgName[error_id], msg);
+
+//        model.addAttribute("loginErr", new Error(error_id, msg));
+        model.addAttribute("error_id", error_id);
     }
 }

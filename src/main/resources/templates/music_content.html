@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div id="music_container" class="video-list-container">
+    <div id="search_bar_container">
+        <div class="ui icon input">
+            <input id="search_input" type="text" placeholder="Search..." onkeydown="search_music(event)">
+            <i class="search icon"></i>
+        </div>
+    </div>
+
+    <div id="body_container" class="music-list-container">
+        <div id="music_list" class="">
+<!--            <div class="music-item">-->
+<!--                <div class="music-number">-->
+<!--                    1-->
+<!--                </div>-->
+<!--                <div class="music-title">-->
+<!--                    <a href="#">Song 1</a>-->
+<!--                </div>-->
+<!--                <div class="music-vocal">-->
+<!--                    Artist 1-->
+<!--                </div>-->
+<!--                <div class="music-buttons">-->
+<!--                    <button class="ui circular icon button">-->
+<!--                        <i class="heart icon"></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </div>
+
+</div>
+<script>
+    function search_music(event){
+        console.log("search video")
+        if (event.keyCode == 13){
+            console.log("click enter")
+            $.ajax({
+                method: "get",
+                url:"/music_list/search_music",
+                data: {
+                    keyword: $("#search_input").val()
+                },
+                dataType:"json",
+                success:function (result) {
+                    console.log("search success")
+                    console.log("search result ", result)
+                    change_musicList(result)
+                }
+            })
+        }
+    }
+
+    $.ajax({
+        method: "get",
+        url:"/music_list/new",
+        data: {},
+        dataType:"json",
+        success:function (result) {
+            console.log(result)
+            change_musicList(result)
+        }
+    })
+</script>
+<!--<script src="music_after.js"></script>-->
+</body>
+</html>

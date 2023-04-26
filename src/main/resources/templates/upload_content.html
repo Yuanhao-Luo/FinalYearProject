@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div id="body_container" class="upload-container">
+    <form class="ui form" th:action="@{resource}" method="post" th:object="${resource}" enctype="multipart/form-data" style="width: 100%">
+        <div class="inline fields">
+            <label>Type: </label>
+            <div id="video_selection_container" class="field">
+                <div class="ui radio checkbox">
+                    <input id="video_selection_input" type="radio" name="type" tabindex="0" class="hidden" th:field="*{type}" value="1">
+                    <label>VIDEO</label>
+                </div>
+            </div>
+            <div id="music_selection_container" class="field">
+                <div class="ui radio checkbox">
+                    <input id="music_selection_input" type="radio" name="type" tabindex="0" class="hidden" th:field="*{type}" value="2">
+                    <label>MUSIC</label>
+                </div>
+            </div>
+        </div>
+        <div id="file_container" class="field">
+            <label>Select your file：</label>
+            <div class="ui action input">
+                <input id="file_input" accept=".mp4, .ogg, .mp3, .wav, .aac, .opus" type="file" name="file" style="display: none">
+                <input id="file_title" readonly>
+                <label for="file_input" class="ui icon button">
+                    <i class="upload icon"></i>
+                    Upload
+                </label>
+            </div>
+        </div>
+        <div id="title_container" class="field">
+            <label>Title</label>
+            <input type="text" name="title" th:field="*{title}">
+        </div>
+        <div id="date_container" class="field">
+            <label>Date</label>
+            <input type="date" name="date" th:field="*{date}">
+        </div>
+        <div id="series_container" class="field">
+            <label>Series</label>
+            <div class="input-container">
+                <div class="ui search selection dropdown" style="width: 85%">
+                    <input type="hidden" name="series">
+                    <i class="dropdown icon"></i>
+                    <div class="default text"></div>
+                    <div class="menu">
+
+                    </div>
+                </div>
+                <i id="new_series" class="new-item-button big plus square icon"></i>
+            </div>
+
+        </div>
+        <div id="vocal_container" class="field">
+            <label>Vocal</label>
+            <div class="input-container">
+                <div class="ui multiple search selection dropdown" style="width: 85%">
+                    <input type="hidden" name="vocal">
+                    <i class="dropdown icon"></i>
+                    <div class="default text"></div>
+                    <div class="menu">
+
+                    </div>
+                </div>
+                <i id="new_vocal" class="new-item-button big plus square icon"></i>
+            </div>
+        </div>
+        <div id="composer_container" class="field">
+            <label>Composer</label>
+            <div class="input-container">
+                <div class="ui multiple search selection dropdown" style="width: 85%">
+                    <input type="hidden" name="composer">
+                    <i class="dropdown icon"></i>
+                    <div class="default text"></div>
+                    <div class="menu">
+
+                    </div>
+                </div>
+                <i id="new_composer" class="new-item-button big plus square icon"></i>
+            </div>
+        </div>
+        <div id="lyricist_container" class="field">
+            <label>Lyricist</label>
+            <div class="input-container">
+                <div class="ui multiple search selection dropdown" style="width: 85%">
+                    <input type="hidden" name="lyricist">
+                    <i class="dropdown icon"></i>
+                    <div class="default text"></div>
+                    <div class="menu">
+
+                    </div>
+                </div>
+                <i id="new_lyricist" class="new-item-button big plus square icon"></i>
+            </div>
+        </div>
+        <div id="image_container" class="field">
+            <label>Select your Image：</label>
+            <div class="ui action input">
+                <input id="image_input" accept="image/aces" type="file" name="image" style="display: none">
+                <input id="image_title" readonly>
+                <label for="image_input" class="ui icon button">
+                    <i class="upload icon"></i>
+                    Upload
+                </label>
+            </div>
+        </div>
+        <button id="upload_submit" class="ui button" type="submit">Submit</button>
+    </form>
+</div>
+<script src="upload_after.js"></script>
+</body>
+</html>

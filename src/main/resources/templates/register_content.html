@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div id="register_container">
+    <form method="post">
+        <div class="login-form">
+            <div class="login-username ui labeled input">
+                <div class="login-label ui label">
+                    Username
+                </div>
+                <input type="text" id="register_username">
+            </div>
+
+            <div class="login-password ui labeled input">
+                <div class="login-label ui label">
+                    Password
+                </div>
+                <input type="password" id="register_password">
+            </div>
+
+            <div class="login-email ui labeled input">
+                <div class="login-label ui label">
+                    E-mail
+                </div>
+                <input type="email" id="register_email">
+            </div>
+
+            <div id="register_error" class="login-error">
+                <span class="ui pointing red basic label"></span>
+            </div>
+
+
+            <div class="login-submit">
+                <button class="ui green button" type="submit">Submit</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#register_container').find('form').submit(function (event) {
+            event.preventDefault();
+            var username = $('#register_username').val();
+            var password = $('#register_password').val();
+            var email = $('#register_email').val();
+            $.ajax({
+                type: "POST",
+                url: "/register",
+                data: {
+                    username: username,
+                    password: password,
+                    email: email
+                },
+                success: function (data) {
+                    if (data === "success") {
+                        jumpto_home();
+                        update_userinfo();
+                    } else {
+                        $('#register_error').show();
+                        $('#register_error').find('span').html(data);
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

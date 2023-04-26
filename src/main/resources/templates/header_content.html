@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+<div id="navigate_container">
+    <div id="navigate_home" class="navigate-button">
+        <div class="navigate-icon">
+            <i class="home icon"></i>
+        </div>
+        <span class="navigate-word">
+                        Home
+                </span>
+    </div>
+    <div id="navigate_video" class="navigate-button">
+        <div class="navigate-icon">
+            <i class="video icon"></i>
+        </div>
+        <span class="navigate-word">
+                        Video
+                </span>
+    </div>
+    <div id="navigate_music" class="navigate-button">
+        <div class="navigate-icon">
+            <i class="music icon"></i>
+        </div>
+        <span class="navigate-word">
+                        Music
+                </span>
+    </div>
+    <div id="navigate_upload" class="navigate-button">
+        <div class="navigate-icon">
+            <i class="upload icon"></i>
+        </div>
+        <span class="navigate-word">
+                        Upload
+                </span>
+    </div>
+</div>
+
+<div id="header_account">
+    <div id="login_button" class="login-button">
+        <span>
+            Log in
+        </span>
+    </div>
+
+    <div id="account_info">
+        <span id="account_username"></span>
+        <div id="logout_button">
+            <i class="ui circular logout icon"></i>
+        </div>
+    </div>
+</div>
+<script>
+    $("#navigate_video").click(function () {
+        jumpto_video();
+    });
+
+    $("#navigate_home").click(function () {
+        jumpto_home();
+    });
+
+    $("#navigate_music").click(function () {
+        jumpto_music();
+    });
+
+    $("#navigate_upload").click(function () {
+        jumpto_upload();
+    });
+
+    $("#login_button").click(function () {
+        jumpto_login();
+    });
+
+    $("#logout_button").click(function () {
+        logout();
+    })
+
+
+    update_userinfo();
+</script>
+</body>
+</html>
